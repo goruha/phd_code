@@ -2,8 +2,7 @@ package libiada.Statistics.Picks;
 
 import libiada.Statistics.Picks.Calculators.PicksCalculator.IPicksCalculator;
 import libiada.Statistics.Picks.Calculators.PicksCalculator.SamplingCalculator;
-import libiada.Statistics.Picks.Calculators.ValueCalculator.MaxCalculator;
-import libiada.Statistics.Picks.Calculators.ValueCalculator.MinCalculator;
+import libiada.Statistics.Picks.Calculators.ValueCalculator.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,11 +15,31 @@ public class CalculatorFactory {
         return new SamplingCalculator(param);
     }
 
-    public static MaxCalculator getMax() {
+    public static IValueCalculator getMax() {
         return new MaxCalculator();
     }
 
-    public static MinCalculator getMin() {
+    public static IValueCalculator getMin() {
         return new MinCalculator();
+    }
+
+    public static IValueCalculator getExpectation() {
+        return new ExpectationCalculator();
+    }
+
+    public static IValueCalculator getVariance() {
+        return new VarianceCalculator();
+    }
+
+    public static IValueCalculator getStandardDeviation() {
+        return new StandardDeviation();
+    }
+
+    public static IValueCalculator getCorelation(Picks picks1, Picks picks2) throws Exception {
+        return new Corelation(picks1, picks2);
+    }
+
+    public static IValueCalculator getCovariation(Picks picks1, Picks picks2) throws Exception {
+        return new Covariation(picks1, picks2);
     }
 }
